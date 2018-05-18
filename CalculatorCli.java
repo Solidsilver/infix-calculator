@@ -29,6 +29,7 @@ public class CalculatorCli {
 					}
 				}
 			} while (!in.equals("exit"));
+			kb.close();
 		} else {
 			out(c.eval(args[0]) + "\n");
 		}
@@ -109,6 +110,7 @@ public class CalculatorCli {
 			line = line.replaceAll("\\s+","");
 			setVar(line.substring(0, line.indexOf("=")), Double.parseDouble(line.substring(line.indexOf("=") + 1)));
 		}
+		fin.close();
 	}
 	
 	private void eqnsFromFile(String fname, PrintStream fout) throws FileNotFoundException {
@@ -119,6 +121,7 @@ public class CalculatorCli {
 		while (fin.hasNextLine()) {
 			out(evalVerbos(fin.nextLine()), fout);
 		}
+		fin.close();
 	}
 
 	private static void out(Object o) {
