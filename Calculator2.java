@@ -192,7 +192,6 @@ public void actionPerformed(ActionEvent e) {
 				txt.setText(str_number);
 				str_number = "";
 			}
-			
 	}	
 	else if(e.getSource()==btn_dot) {
 			 str_number+=".";	

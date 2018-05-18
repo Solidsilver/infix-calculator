@@ -47,7 +47,7 @@ public class CalculatorCli {
 			ret += eqn + " --> ";
 			Object[] arr = FixTools.toPostfix(eqn);
 			this.replaceVars(arr);
-			ret += FixTools.arrToString(arr, "") + " --> ";
+			ret += ArrayTools.arrToString(arr, "") + " --> ";
 			ret += FixTools.evalPostfix(arr) + "\n";
 		} catch (Exception e) {
 			ret += e.getMessage() + "\n";
@@ -63,7 +63,7 @@ public class CalculatorCli {
 			this.vars[0] = varName;
 			this.varValues[0] = varValue;
 		} else {
-			if (indexOf(this.vars, varName) < 0) {	//Check if variable is already in use
+			if (ArrayTools.indexOf(this.vars, varName) < 0) {	//Check if variable is already in use
 				String[] tempN = this.vars;
 				double[] tempD = this.varValues;
 				this.vars = new String[tempN.length + 1];
@@ -75,25 +75,26 @@ public class CalculatorCli {
 				this.vars[tempN.length] = varName;
 				this.varValues[tempD.length] = varValue;
 			} else {
-				this.varValues[indexOf(this.vars, varName)] = varValue;
-			}
-		}
-	}
-
-	private void replaceVars(Object[] eqn) {
-		for (int ix = 0; ix < eqn.length; ix++) {
-			if (indexOf(this.vars, "" + eqn[ix]) > -1) {
-				eqn[ix] = this.varValues[indexOf(this.vars, "" + eqn[ix])];
+				this.varValues[ArrayTools.indexOf(this.vars, varName)] = varValue;
 			}
 		}
 	}
 
 	public double getVarValue(String varName) {
-		int idx = indexOf(vars, varName);
+		int idx = ArrayTools.indexOf(vars, varName);
 		if (idx >= 0) {
 			return this.varValues[idx];
 		} else {
 			return 0.0;
+		}
+	}
+
+	//Replace Variables with their values
+	private void replaceVars(Object[] eqn) {
+		for (int ix = 0; ix < eqn.length; ix++) {
+			if (ArrayTools.indexOf(this.vars, "" + eqn[ix]) > -1) {
+				eqn[ix] = this.varValues[ArrayTools.indexOf(this.vars, "" + eqn[ix])];
+			}
 		}
 	}
 	
@@ -119,18 +120,6 @@ public class CalculatorCli {
 			out(evalVerbos(fin.nextLine()), fout);
 		}
 	}
-	
-	private int indexOf(String[] arr, String s) {
-		if (arr == null) {
-			return -1;
-		}
-		for (int ix = 0; ix < arr.length; ix++) {
-			if (arr[ix].equals(s)) {
-				return ix;
-			}
-		}
-		return -1;
-	}
 
 	private static void out(Object o) {
 		out(o, System.out);
@@ -139,6 +128,4 @@ public class CalculatorCli {
 	private static void out(Object o, PrintStream p) {
 		p.print(o);
 	}
-
-
 }
