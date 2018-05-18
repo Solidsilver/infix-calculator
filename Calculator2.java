@@ -220,7 +220,11 @@ public void actionPerformed(ActionEvent e) {
 	} else if(e.getSource()==btn_memr) {
 		double mem = cli.getVarValue("M");
 		if (mem != 0.0) {
-			str_number+= mem;	
+			if (mem < 0) {
+				str_number+= "(0" + mem + ")";
+			} else {
+				str_number+= mem;	
+			}
 			txt.setText(str_number);
 		}
 		
