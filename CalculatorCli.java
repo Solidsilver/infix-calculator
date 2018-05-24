@@ -10,11 +10,13 @@ public class CalculatorCli {
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		CalculatorCli c = new CalculatorCli();
+		//Default reading/writing equations in files.
 		if (args.length < 1) {
 			c.readVars("hw5_input2.txt");
 			PrintStream fout = new PrintStream(new File("hw5_output.txt"));
 			c.eqnsFromFile("hw5_input3.txt", fout);
-			
+		
+		//Run program with -p flag to start prompt mode
 		} else if (args[0].equals("-p")) {
 			String in;
 			Scanner kb = new Scanner(System.in);

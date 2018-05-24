@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
- 
+
 class Calculator2 extends JFrame implements ActionListener { 
 
 	private static final long serialVersionUID = 1L;
@@ -49,8 +49,10 @@ class Calculator2 extends JFrame implements ActionListener {
 		JPanel NumberPanel = new JPanel();
 		JPanel LabelPanel = new JPanel();
 		
-		LabelPanel.setBackground(Color.LIGHT_GRAY);
-		HeadPanel.setBackground(Color.LIGHT_GRAY);
+		//frame.setBackground(Color.BLACK);
+		LabelPanel.setBackground(Color.BLUE);
+		//HeadPanel.setBackground(Color.LIGHT_GRAY);
+		HeadPanel.setBackground(Color.BLUE);
 		NumberPanel.setLayout(new GridLayout(6,4));
 		//LabelPanel.setLayout(new BorderLayout());
 		LabelPanel.setLayout(new GridLayout(1,1));
@@ -93,7 +95,6 @@ class Calculator2 extends JFrame implements ActionListener {
 		btn_div.addActionListener(this);
 		LabelPanel.add(txt);
 
-		//LabelPanel.add(btn_equ);
 		NumberPanel.add(btn_lpr);
 		btn_lpr.addActionListener(this);
 		NumberPanel.add(btn_rpr);
@@ -192,7 +193,7 @@ public void actionPerformed(ActionEvent e) {
 				txt.setText(str_number);
 				str_number = "";
 			}
-	}	
+	} 
 	else if(e.getSource()==btn_dot) {
 			 str_number+=".";	
 			 txt.setText(str_number);
@@ -213,7 +214,6 @@ public void actionPerformed(ActionEvent e) {
 				System.out.println(p.getMessage());
 			}
 		}
-
 	} else if(e.getSource()==btn_memc) {
 		cli.setVar("M", 0.0);
 	} else if(e.getSource()==btn_memr) {
@@ -226,7 +226,6 @@ public void actionPerformed(ActionEvent e) {
 			}
 			txt.setText(str_number);
 		}
-		
 	} else if(e.getSource()==btn_clr) {
 		txt.setText("");
 	}
